@@ -21,6 +21,8 @@ public class CommandExecutor {
             System.out.println("Enter uuid");
             uuid = sc.next();
             handler.AddCreds(uuid, creds);
+            System.out.println();
+            commandManager();
         } else
         if (input.equals("credits remove") || input.equals(" credits remove") || input.equals("credits remove ")) {
             System.out.println(responses[1]);
@@ -29,13 +31,16 @@ public class CommandExecutor {
             uuid = sc.next();
             System.out.println("Processing Command");
             handler.RemoveCreds(uuid,creds);
-
+            System.out.println();
+            commandManager();
         } else
         if (input.equals("credits") || input.equals(" credits") || input.equals("credits ") || input.equals(" credits ")) {
             System.out.println("Enter uuid");
             uuid = sc.next();
             System.out.println(responses[2]);
             handler.ReadCreds(uuid);
+            System.out.println();
+            commandManager();
         } else
         if (input.equals("credits profile create") || input.equals(" credits profile create") || input.equals(" credits profile create ") || input.equals("credits profile create ")) {
             System.out.println("Enter uuid");
@@ -45,9 +50,12 @@ public class CommandExecutor {
             System.out.println(responses[0]);
             creds = sc.nextInt();
             handler.createProfile(uuid,username,creds);
+            System.out.println();
+            commandManager();
         } else {
             System.out.println("Invalid Command, please try again");
             System.out.println("");
+            System.out.println();
             commandManager();
 
         }

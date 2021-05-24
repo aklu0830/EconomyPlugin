@@ -3,7 +3,7 @@ import com.mysql.jdbc.Driver;
 import java.sql.*;
 
 public class ConnectionHandler {
-    private String host = "207.244.247.114:3306";
+    private String host = "207.244.247.114";
     private String port= "3306";
     private String user = "aklusa";
     private String password = "BromiumCalciumBrombieDextroseDiOxiCloride";
@@ -17,7 +17,7 @@ public class ConnectionHandler {
 
         try {
             connect = DriverManager
-                    .getConnection("jdbc:mysql://207.244.247.114:3306/" + dbname + "?"
+                    .getConnection("jdbc:mysql://"+host+":"+port+"/"+dbname+"?"
                             + "user=" + user + "&password=" + password);
             System.out.println("Checking for missing sql table. Will be created if it is missing.");
             statement = connect.createStatement();
@@ -36,7 +36,7 @@ public class ConnectionHandler {
         System.out.println("Attempting to create profile now");
         try {
             connect = DriverManager
-                    .getConnection("jdbc:mysql://207.244.247.114:3306/"+dbname+"?"
+                    .getConnection("jdbc:mysql://"+host+":"+port+"/"+dbname+"?"
                             + "user="+user+"&password="+password);
             statement = connect.createStatement();
             preparedStatement = connect.prepareStatement("INSERT INTO credits (UUID, username, usercreds) SELECT * FROM (SELECT '" + uuid + "', '" + username + "', '" + credits + "') AS tmp_name WHERE NOT EXISTS ( SELECT usercreds FROM credits WHERE uuid = '" + uuid + "');");
@@ -53,7 +53,7 @@ public class ConnectionHandler {
     public void AddCreds(String uuid, int credits) throws Exception {
         try {
             connect = DriverManager
-                    .getConnection("jdbc:mysql://207.244.247.114:3306/"+dbname+"?"
+                    .getConnection("jdbc:mysql://"+host+":"+port+"/"+dbname+"?"
                             + "user="+user+"&password="+password);
             statement = connect.createStatement();
             resultSet = statement
@@ -78,7 +78,7 @@ public class ConnectionHandler {
     public void RemoveCreds(String uuid, int credits) throws Exception {
         try {
             connect = DriverManager
-                    .getConnection("jdbc:mysql://207.244.247.114:3306/"+dbname+"?"
+                    .getConnection("jdbc:mysql://"+host+":"+port+"/"+dbname+"?"
                             + "user="+user+"&password="+password);
             statement = connect.createStatement();
             resultSet = statement.executeQuery("select usercreds from credits where uuid ='" + uuid + "'");
@@ -104,7 +104,7 @@ public class ConnectionHandler {
     public void ReadCreds(String uuid) throws Exception {
         try {
             connect = DriverManager
-                    .getConnection("jdbc:mysql://207.244.247.114:3306/"+dbname+"?"
+                    .getConnection("jdbc:mysql://"+host+":"+port+"/"+dbname+"?"
                             + "user="+user+"&password="+password);
             statement = connect.createStatement();
             resultSet = statement.executeQuery("select usercreds,username from credits where uuid='" + uuid + "'");

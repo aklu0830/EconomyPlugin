@@ -3,6 +3,7 @@ public class MainController {
         ConnectionHandler ch = new ConnectionHandler();
         CommandExecutor executor = new CommandExecutor();
         ch.tableCheck();
+        System.out.println();
         executor.commandManager();
 
     }
