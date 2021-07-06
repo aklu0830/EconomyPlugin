@@ -13,7 +13,7 @@ public class CommandExecutor {
         String username;
         String uuid;
         Scanner sc = new Scanner(System.in);
-        String[] responses = {"How many credits would you like to add", "How many credits would you like to deduct", "Getting Credits", "Adding Credits", "Removing Credits", "Invalid Input/Arguments"};
+        String[] responses = {"How many credits would you like to add", "How many credits would you like to deduct", "Getting Credits", "Adding Credits", "Removing Credits", "Invalid Input/Arguments","Removing Profile"};
         input = sc.nextLine();
         if (input.equals("credits add") || input.equals(" credits add") || input.equals("credits add ")) {
             System.out.println(responses[0]);
@@ -52,12 +52,26 @@ public class CommandExecutor {
             handler.createProfile(uuid,username,creds);
             System.out.println();
             commandManager();
+        } else if (input.equals("help") || input.equalsIgnoreCase(" help") || input.equals(" help ") || input.equals("help ")){
+            System.out.println("Commands List:\n- credits add\n- credits remove\n -credits profile create");
+
+        } else if (input.equalsIgnoreCase("credits profile delete") || input.equalsIgnoreCase("credits profile delete ")||input.equalsIgnoreCase(" credits profile delete")){
+            System.out.println("Enter UUID");
+            uuid = sc.next();
+            System.out.println("Are you sure you want to remove the profile? (y/n)");
+            String choice = "";
+            choice = sc.nextLine();
+            System.out.println("");
+            String resp = "";
+            choice.equalsIgnoreCase("y") ? "Dropping table" : "Keeping Table";
+            handler.DropProfile(uuid);
+
         } else {
             System.out.println("Invalid Command, please try again");
             System.out.println("");
             System.out.println();
             commandManager();
-
         }
+
     }
 }

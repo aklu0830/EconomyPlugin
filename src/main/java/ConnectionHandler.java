@@ -120,6 +120,22 @@ public class ConnectionHandler {
 
     }
 
+    public void DropProfile(String uuid) throws Exception {
+        try {
+            connect = DriverManager
+                    .getConnection("jdbc:mysql://"+host+":"+port+"/"+dbname+"?"
+                            + "user="+user+"&password="+password);
+            statement = connect.createStatement();
+            resultSet = statement.executeQuery("DELETE FROM credits WHERE UUID='" + uuid + "'");
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        } finally {
+            close();
+        }
+
+    }
+
     private void close() {
         try {
             if (resultSet != null) {
