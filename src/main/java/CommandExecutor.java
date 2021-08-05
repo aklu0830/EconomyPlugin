@@ -53,18 +53,24 @@ public class CommandExecutor {
             System.out.println();
             commandManager();
         } else if (input.equals("help") || input.equalsIgnoreCase(" help") || input.equals(" help ") || input.equals("help ")){
-            System.out.println("Commands List:\n- credits add\n- credits remove\n -credits profile create");
+            System.out.println("Commands List:\n- credits add\n- credits remove\n -credits profile create\n- credits profile delete");
 
         } else if (input.equalsIgnoreCase("credits profile delete") || input.equalsIgnoreCase("credits profile delete ")||input.equalsIgnoreCase(" credits profile delete")){
             System.out.println("Enter UUID");
             uuid = sc.next();
             System.out.println("Are you sure you want to remove the profile? (y/n)");
             String choice = "";
-            choice = sc.nextLine();
+            choice = sc.next();
             System.out.println("");
             String resp = "";
-            choice.equalsIgnoreCase("y") ? "Dropping table" : "Keeping Table";
-            handler.DropProfile(uuid);
+            if (choice.equalsIgnoreCase("y")) {
+                handler.DropProfile(uuid);
+            } else {
+                System.out.println("Exiting Program");
+                return;
+            }
+
+
 
         } else {
             System.out.println("Invalid Command, please try again");

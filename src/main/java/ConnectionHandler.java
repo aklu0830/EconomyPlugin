@@ -13,6 +13,7 @@ public class ConnectionHandler {
     private Connection connect = null;
     private Statement statement = null;
     private PreparedStatement preparedStatement = null;
+    String tempuser = "";
     public void tableCheck() throws SQLException {
 
         try {
@@ -122,15 +123,24 @@ public class ConnectionHandler {
 
     public void DropProfile(String uuid) throws Exception {
         try {
+
             connect = DriverManager
                     .getConnection("jdbc:mysql://"+host+":"+port+"/"+dbname+"?"
                             + "user="+user+"&password="+password);
             statement = connect.createStatement();
-            resultSet = statement.executeQuery("DELETE FROM credits WHERE UUID='" + uuid + "'");
+            resultSet = statement.executeQuery("select username from credits where uuid='" + uuid + "'");
+            while(resultSet.next()) {
+                tempuser = resultSet.getString("username");
+            }
+            statement = connect.createStatement();
+            statement.executeUpdate("DELETE FROM credits WHERE uuid='"+ uuid+"'");
+
+            System.out.println("");
         } catch (Exception e) {
             e.printStackTrace();
             throw e;
         } finally {
+            System.out.println(tempuser + "'s account has been shoved up your mom's ass");
             close();
         }
 
