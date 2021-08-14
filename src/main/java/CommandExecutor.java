@@ -1,11 +1,12 @@
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
-import java.util.ArrayList;
+import Network.ConnectionHandler;
+
 import java.util.Scanner;
 
 public class CommandExecutor {
     ConnectionHandler handler = new ConnectionHandler();
 
     public void commandManager() throws Exception {
+        System.out.println();
         System.out.println("Input Command");
         String input;
 
@@ -54,6 +55,7 @@ public class CommandExecutor {
             commandManager();
         } else if (input.equals("help") || input.equalsIgnoreCase(" help") || input.equals(" help ") || input.equals("help ")){
             System.out.println("Commands List:\n- credits add\n- credits remove\n -credits profile create\n- credits profile delete");
+            commandManager();
 
         } else if (input.equalsIgnoreCase("credits profile delete") || input.equalsIgnoreCase("credits profile delete ")||input.equalsIgnoreCase(" credits profile delete")){
             System.out.println("Enter UUID");
@@ -65,10 +67,12 @@ public class CommandExecutor {
             String resp = "";
             if (choice.equalsIgnoreCase("y")) {
                 handler.DropProfile(uuid);
+                commandManager();
             } else {
                 System.out.println("Exiting Program");
                 return;
             }
+
 
 
 
