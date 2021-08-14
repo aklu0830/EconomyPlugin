@@ -1,2 +1,2 @@
 # VladsEconomy
- CMD Basced Economy Minecraft Plugin
+ CMD Based Economy Minecraft Plugin
