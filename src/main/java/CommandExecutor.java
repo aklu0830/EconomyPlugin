@@ -6,8 +6,9 @@ public class CommandExecutor {
     ConnectionHandler handler = new ConnectionHandler();
 
     public void commandManager() throws Exception {
-        System.out.println("Input Command");
+        System.out.println("\nInput Command");
         String input;
+
 
         int creds;
         String username;
@@ -54,6 +55,7 @@ public class CommandExecutor {
             commandManager();
         } else if (input.equals("help") || input.equalsIgnoreCase(" help") || input.equals(" help ") || input.equals("help ")){
             System.out.println("Commands List:\n- credits add\n- credits remove\n -credits profile create\n- credits profile delete");
+            commandManager();
 
         } else if (input.equalsIgnoreCase("credits profile delete") || input.equalsIgnoreCase("credits profile delete ")||input.equalsIgnoreCase(" credits profile delete")){
             System.out.println("Enter UUID");
