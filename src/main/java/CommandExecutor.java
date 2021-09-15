@@ -1,3 +1,5 @@
+import Network.ConnectionHandler;
+
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 import java.util.ArrayList;
 import java.util.Scanner;
