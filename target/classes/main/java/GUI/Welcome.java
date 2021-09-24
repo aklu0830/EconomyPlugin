@@ -1,3 +1,5 @@
+package GUI;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -6,7 +8,7 @@ public class Welcome {
     JFrame frame = new JFrame();
     JLabel welcome = new JLabel();
 
-    Welcome() {
+    public Welcome() {
         welcome.setBounds(0,0,200,35);
         welcome.setFont(new Font(null,Font.PLAIN,25));
         frame.add(welcome);

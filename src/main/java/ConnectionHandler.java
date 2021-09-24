@@ -1,10 +1,10 @@
-package Network;
-
 import com.mysql.jdbc.Driver;
 
 import java.sql.*;
 
 public class ConnectionHandler {
+
+
     private String host = "207.244.247.114";
     private String port= "3306";
     private String user = "aklusa";
@@ -16,6 +16,10 @@ public class ConnectionHandler {
     private Statement statement = null;
     private PreparedStatement preparedStatement = null;
     String tempuser = "";
+    String dbpass = "";
+
+
+
     public void tableCheck() throws SQLException {
 
         try {
@@ -24,7 +28,7 @@ public class ConnectionHandler {
                             + "user=" + user + "&password=" + password);
             System.out.println("Checking for missing sql table. Will be created if it is missing.");
             statement = connect.createStatement();
-            preparedStatement = connect.prepareStatement("CREATE table if not exists credits (UUID text, username text, usercreds text);");
+            preparedStatement = connect.prepareStatement("CREATE table if not exists credits (UUID text, username text, usercreds text, password text);");
             preparedStatement.execute();
         } catch (Exception e) {
             System.out.println("Profile Creation Failed Because of Internal Error");
@@ -49,6 +53,7 @@ public class ConnectionHandler {
             System.out.println("Profile Creation Failed Because of Internal Error");
             throw e;
         } finally {
+
             close();
         }
     }
@@ -142,10 +147,42 @@ public class ConnectionHandler {
             e.printStackTrace();
             throw e;
         } finally {
-            System.out.println(tempuser + "'s account has been shoved up your mom's ass");
+            System.out.println(tempuser + "'s account has been remove");
             close();
         }
 
+    }
+
+
+    public void login(String username, String inputpass) throws Exception {
+
+        try {
+            connect = DriverManager
+                    .getConnection("jdbc:mysql://"+host+":"+port+"/"+dbname+"?"
+                            +"user="+user+"&password="+password);
+            statement = connect.createStatement();
+            resultSet = statement.executeQuery("select * from credits where username='" + username +"';");
+            while (resultSet.next()) {
+                dbpass = resultSet.getString("password");
+
+            }
+
+            if (inputpass.equals(dbpass)) {
+                System.out.println("Login Successful");
+                CommandExecutor ce = new CommandExecutor();
+                ce.commandManager();
+            }
+            else {
+                System.out.println("Login Failed");
+            }
+
+        } catch (Exception e) {
+            System.out.println("Problem has occoured when logging in");
+            e.printStackTrace();
+            throw e;
+        } finally {
+
+        }
     }
 
     private void close() {
