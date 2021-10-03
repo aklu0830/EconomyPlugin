@@ -5,10 +5,10 @@ import java.sql.*;
 public class ConnectionHandler {
 
 
-    private String host = "207.244.247.114";
+    private String host = "";
     private String port= "3306";
     private String user = "aklusa";
-    private String password = "BromiumCalciumBrombieDextroseDiOxiCloride";
+    private String password = "";
     private String dbname = "Development";
     private ResultSet resultSet = null;
     private ResultSet rsec = null;
