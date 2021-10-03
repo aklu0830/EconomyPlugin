@@ -1,12 +1,19 @@
+<<<<<<< HEAD
+=======
+import Network.ConnectionHandler;
+
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
+import java.util.ArrayList;
+>>>>>>> 2d0ca124256b5e7aa5933ac6cf8f8536d1f35276
 import java.util.Scanner;
 
 public class CommandExecutor {
     ConnectionHandler handler = new ConnectionHandler();
 
     public void commandManager() throws Exception {
-        System.out.println();
-        System.out.println("Input Command");
+        System.out.println("\nInput Command");
         String input;
+
 
         int creds;
         String username;
@@ -65,12 +72,10 @@ public class CommandExecutor {
             String resp = "";
             if (choice.equalsIgnoreCase("y")) {
                 handler.DropProfile(uuid);
-                commandManager();
             } else {
                 System.out.println("Exiting Program");
                 return;
             }
-
 
 
 

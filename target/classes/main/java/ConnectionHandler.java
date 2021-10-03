@@ -3,12 +3,8 @@ import com.mysql.jdbc.Driver;
 import java.sql.*;
 
 public class ConnectionHandler {
-<<<<<<< HEAD
 
 
-=======
-    private boolean userExists;
->>>>>>> 2d0ca124256b5e7aa5933ac6cf8f8536d1f35276
     private String host = "207.244.247.114";
     private String port= "3306";
     private String user = "aklusa";
